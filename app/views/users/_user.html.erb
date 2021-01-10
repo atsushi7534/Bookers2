@@ -1,8 +1,19 @@
 <h1>User info</h1>
-<p>name: <%= user.name %></p>
- <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-<p>introduction: <%= user.introduction %></p>
 
+<table class="table">
+<tr><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></tr>
+<tr>
+<th>name: </th>
+<th><%= user.name %></th>
+</tr>
+<tr>
+<th>introduction:</th>
+<th><%= user.introduction %></th>
+</tr>
+</table>
+
+<div class="row">
 <% if user.id == current_user.id %>
-    <p><%= link_to "edit", edit_user_path(user) %></p>
+    <%= link_to " ",edit_user_path(user), class: "btn btn-outline-dark btn-lg btn-block fas fa-user-cog" %>
 <% end %>
+</div>

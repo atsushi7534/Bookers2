@@ -1,45 +1,25 @@
 <!DOCTYPE html>
+<script src="https://kit.fontawesome.com/297207e270.js" crossorigin="anonymous"></script>
 <html>
   <head>
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "Home", destroy_user_session_path, method: :delete %>
-      </li>
-      <li>
-        <%= link_to "Users", destroy_user_session_path, method: :delete %>
-      </li>
-      <li>
-        <%= link_to "Books", destroy_user_session_path, method: :delete %>
-      </li>
-      <li>
-        <%= link_to "logout", destroy_user_session_path, method: :delete %>
-      </li>
-      <li>
-      <%= link_to 'マイページ', user_path(current_user.id) %>
-    </li>
-    <% else %>
-      <li>
-        <%= link_to "Home", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "About", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "sign up", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "login", new_user_session_path %>
-      </li>
-    <% end %>
+    <%= render 'layouts/header' %>
+
+    <div>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+  　<% end %>
+    </div>
+
     <%= yield %>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
